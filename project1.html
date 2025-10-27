@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project 1: IQ Option Bot</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Inter', 'sans-serif']
+                    },
+                    colors: {
+                        'primary': '#3b82f6',
+                        'secondary': '#1f2937',
+                        'base': '#111827',
+                        'light': '#e5e7eb',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .project-content-img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 0.5rem;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.5);
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+
+<body class="bg-base text-light antialiased">
+
+    <nav id="navbar" class="bg-base/70 backdrop-blur-md sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto px-6 py-4 flex items-center justify-between">
+
+            <a href="index.html" id="back-to-home-link" data-lang-key="back-to-home"
+                class="flex items-center text-light text-lg font-medium hover:text-primary transition-colors">
+                 กลับหน้าหลัก
+            </a>
+
+            <div class="flex items-center space-x-4">
+                <a href="index.html#home" class="text-2xl font-bold text-white hover:text-primary transition-colors">
+                    <span class="text-primary">shoya</span>
+                </a>
+                <button id="lang-toggle-btn"
+                    class="bg-primary text-white px-3 py-1 rounded-full text-sm hover:bg-blue-600 transition-colors">
+                    日本語
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <section class="py-16 md:py-24 px-4 bg-base">
+        <div class="container mx-auto max-w-4xl">
+            <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-4 border-b-4 border-primary pb-2 "
+                data-aos="fade-down" id="project-title" data-lang-key="project-title">
+                โปรเจกต์ 1: บอทเทรดอัตโนมัติ IQ Option
+            </h2>
+            <p class="text-xl text-gray-400 mb-10" data-aos="fade-down" data-aos-delay="100" id="project-subtitle"
+                data-lang-key="project-subtitle">
+                ระบบเทรดอัตโนมัติด้วย Python สำหรับการวิเคราะห์และซื้อขายตามรูปแบบแท่งเทียน
+            </p>
+
+            <div class="space-y-12 text-lg text-gray-300" id="content-intro">
+                <p data-aos="fade-up" data-aos-delay="200" data-lang-key="content-intro">
+                    โปรเจกต์นี้เป็นระบบเทรดอัตโนมัติที่เขียนด้วยภาษา Python เพื่อทำการตัดสินใจซื้อขายบน IQ Option
+                    โดยบอทจะวิเคราะห์ข้อมูลตลาดแบบเรียลไทม์ และซื้อขายตามกลยุทธ์ที่กำหนดไว้ล่วงหน้า</p>
+
+                <article data-aos="fade-up" data-aos-delay="200">
+                    <h4 class="text-2xl font-bold text-primary mb-3 mt-8" data-lang-key="section1-header">
+                        1. การเชื่อมต่อกับ IQ Option <i class="fas fa-plug ml-2"></i>
+                    </h4>
+                    <p data-lang-key="section1-p1">ส่วนนี้คือการเชื่อมต่อไปยังแพลตฟอร์มการซื้อขาย IQ Option
+                        เพื่อให้บอทสามารถส่งคำสั่งซื้อขายได้
+                        ใช้ไลบรารี <code>IQ_Option</code> เพื่อสร้างการเชื่อมต่อ และตั้งค่าให้เชื่อมต่อกับ
+                        บัญชีฝึกหัด (Demo Account)</p>
+                    <div class="my-6 ">
+                        <img src="website_images/login.jpg" alt="ภาพแสดงสถานะการเชื่อมต่อกับ IQ Option"
+                            class="project-content-img transform hover:scale-105 transition-transform duration-300" />
+                        <p class="text-center text-sm text-gray-500 mt-2" data-lang-key="section1-caption">ภาพตัวอย่าง:
+                            การเชื่อมต่อและยอดคงเหลือในบัญชีฝึกหัด</p>
+                    </div>
+                </article>
+
+                <article data-aos="fade-up" data-aos-delay="200">
+                    <h4 class="text-2xl font-bold text-primary mb-3 mt-8" data-lang-key="section2-header">
+                        2. รับข้อมูลแท่งเทียนแบบเรียลไทม์ <i class="fas fa-chart-line ml-2"></i>
+                    </h4>
+                    <p data-lang-key="section2-p1">บอทจะเริ่มสตรีมข้อมูลแท่งเทียน สำหรับสินทรัพย์ที่กำหนด (เช่น
+                        "EURUSD-OTC")
+                        ในช่วงเวลา 60 วินาที (แท่งเทียน 1 นาที) และดึงข้อมูลแท่งเทียน **สามแท่งสุดท้ายที่สมบูรณ์แล้ว**
+                        เพื่อนำมาวิเคราะห์</p>
+                    <div class="my-6">
+                        <img src="website_images/candles_data.jpg" alt="ภาพข้อมูลแท่งเทียนเรียลไทม์"
+                            class="project-content-img transform hover:scale-105 transition-transform duration-300" />
+                        <p class="text-center text-sm text-gray-500 mt-2" data-lang-key="section2-caption">ภาพตัวอย่าง:
+                            การแสดงข้อมูลแท่งเทียนแบบเรียลไทม์จากแพลตฟอร์ม</p>
+                    </div>
+                </article>
+
+                <article data-aos="fade-up" data-aos-delay="200">
+                    <h4 class="text-2xl font-bold text-primary mb-3 mt-8" data-lang-key="section3-header">
+                        3. การวิเคราะห์รูปแบบแท่งเทียน <i class="fas fa-brain ml-2"></i>
+                    </h4>
+                    <p data-lang-key="section3-p1">บอทจะวิเคราะห์ราคาเปิด, ราคาปิด, ราคาสูงสุด และราคาต่ำสุด
+                        เพื่อกำหนดสี
+                        และบอกรูปแบบการซื้อขาย</p>
+                    <p class="font-bold text-white mt-4 mb-2" data-lang-key="section3-conditions-title">เงื่อนไขหลัก:
+                    </p>
+                    <ul class="list-disc list-inside ml-4 space-y-2" id="conditions-list">
+                        <li data-lang-key="section3-condition-call"><strong>เงื่อนไขออปชั่น Call (ซื้อขึ้น):</strong>
+                            บอทจะซื้อ "CALL"
+                            ถ้าแท่งเทียนสองแท่งสุดท้ายเป็นสี เขียว ทั้งคู่
+                            และแท่งเทียนที่สามเปิดสูงกว่าราคาสูงสุดของแท่งที่สอง </li>
+                        <li data-lang-key="section3-condition-put"><strong>เงื่อนไขออปชั่น Put (ซื้อลง):</strong>
+                            บอทจะซื้อ "PUT"
+                            ถ้าแท่งเทียนสองแท่งสุดท้ายเป็นสี แดง ทั้งคู่
+                            และแท่งเทียนที่สามเปิดต่ำกว่าราคาต่ำสุดของแท่งที่สอง </li>
+                    </ul>
+                    <div class="my-6">
+                        <img src="website_images/calculate.jpg" alt="ภาพแสดงรูปแบบแท่งเทียนสำหรับ Buy Put"
+                            class="project-content-img transform hover:scale-105 transition-transform duration-300" />
+                        <p class="text-center text-sm text-gray-500 mt-2" data-lang-key="section3-caption">ภาพตัวอย่าง:
+                            รูปแบบการคำนวณเพื่อตัดสินใจซื้อขึ้นหรือซื้อลง</p>
+                    </div>
+                </article>
+
+                <article data-aos="fade-up" data-aos-delay="200">
+                    <h4 class="text-2xl font-bold text-primary mb-3 mt-8" data-lang-key="section4-header">
+                        4. การทำงานของบอท (ให้ทำงานต่อเนื่อง) <i class="fas fa-cogs ml-2"></i>
+                    </h4>
+                    <p data-lang-key="section4-p1">บอทจะทำงานในลูปไปเรื่อยๆ และจะตรวจสอบโอกาสการซื้อขายที่ วินาทีที่ 54
+                        ของทุกนาที
+                        ซึ่งเป็นเวลาสำคัญในการตัดสินใจก่อนที่แท่งเทียนใหม่จะขึ้น นอกจากนี้ยังมีระบบตรวจการเชื่อมต่อ
+                        เพื่อให้บอทเชื่อมใหม่ได้อัตโนมัติหากการเชื่อมต่อหลุด</p>
+                    <div class="my-6">
+                        <img src="website_images/loop_time.jpg" alt="ภาพแผนผังการทำงานของบอท"
+                            class="project-content-img transform hover:scale-105 transition-transform duration-300" />
+                        <p class="text-center text-sm text-gray-500 mt-2" data-lang-key="section4-caption">ภาพตัวอย่าง:
+                            การทำงานวนซ้ำและตรวจสอบเวลาของบอท
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-10">
+                        <div>
+                            <img src="website_images/output.jpg" alt="ภาพผลลัพธ์การเชื่อมต่อ"
+                                class="project-content-img transform hover:scale-105 transition-transform duration-300" />
+                            <p class="text-center text-sm text-gray-500 mt-2" data-lang-key="section4-img1-caption">
+                                ผลลัพธ์การเชื่อมต่อที่รันด้วย Command
+                                Prompt</p>
+                        </div>
+                        <div>
+                            <img src="website_images/outputwin.jpg" alt="ภาพผลลัพธ์การชนะ"
+                                class="project-content-img transform hover:scale-105 transition-transform duration-300" />
+                            <p class="text-center text-sm text-gray-500 mt-2" data-lang-key="section4-img2-caption">
+                                ผลลัพธ์การชนะที่รันด้วย Command Prompt</p>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="bg-secondary p-6 rounded-lg shadow-xl border-t-4 border-primary " data-aos="fade-up"
+                    data-aos-delay="200">
+                    <h4 class="text-2xl font-bold text-white mb-4 " data-lang-key="strengths-header">จุดแข็งของโปรเจกต์
+                    </h4>
+                    <ul class="list-disc list-inside ml-4 space-y-2">
+                        <li data-lang-key="strength-1"><strong>ระบบอัตโนมัติ:</strong> บอททำงานได้ตลอดเวลาตามที่ตั้งไว้
+                        </li>
+                        <li data-lang-key="strength-2"><strong>เงื่อนไข:</strong> ซื้อขายชัดเจนจากรูปแบบแท่งเทียน</li>
+                        <li data-lang-key="strength-3"><strong>ความเสถียร:</strong>
+                            มีระบบตรวจสอบและเชื่อมต่อใหม่อัตโนมัติหากการเชื่อมต่อหลุด</li>
+                    </ul>
+
+                    <div class="mt-6 border-t border-gray-700 pt-4">
+                        <p data-lang-key="feature-p"><strong>ฟีเจอร์หลัก</strong>: เทรดอัตโนมัติ</p>
+                        <p data-lang-key="tech-p"><strong>เทคโนโลยีที่ใช้</strong>: Python, IQ Option API</p>
+                        <a href="https://github.com/shoyaa0815" target="_blank" data-lang-key="github-link"
+                            class="text-primary hover:underline font-semibold mt-2 block">
+                            <i class="fab fa-github mr-2"></i> ดูบน GitHub (Profile)
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-base py-6 text-center text-gray-500 border-t border-light/20">
+        <p>Shoya</p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
+
+    <script src="translation-data.js"></script>
+    <script src="translation-logic.js"></script>
+
+</body>
+
+</html>
